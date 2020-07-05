@@ -1,6 +1,13 @@
 /**
-    @
-*/
+ * \brief brute force example
+ * \details compile and execute
+ * $ clang++ -o boggle boggle.cpp
+ * $ ./boggle < boggle_input.txt
+ * You can change 'boggle_input.txt' yourself. 
+ * \author Andrew Chang
+ * \date 2020-07-06
+ * \version 1.0.0
+ */
 
 #include <iostream>
 
