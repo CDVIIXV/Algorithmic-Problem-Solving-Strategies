@@ -1,10 +1,12 @@
-
+/**
+    @
+*/
 
 #include <iostream>
 
 #define MAX_ROW 8
 #define MAX_COL 8
-#define MAX_WORD_COUNT 8
+#define MAX_WORD_COUNT 10
 
 using namespace std;
 
@@ -27,10 +29,6 @@ bool inRange(int y, int x)
 
 bool hasWord(int y, int x, int direction, const string& word)
 {
-    if(y == 4 && x == 0 && direction == 2)
-    {
-        cout << "here!\n";
-    }
     if(!inRange(y, x))
     {
         return false;
@@ -46,7 +44,7 @@ bool hasWord(int y, int x, int direction, const string& word)
         return true;
     }
 
-    return hasWord(y + DERECTION[direction][0], x + DERECTION[direction][0], direction, word.substr(1));
+    return hasWord(y + DERECTION[direction][0], x + DERECTION[direction][1], direction, word.substr(1));
 }
 
 bool input()
