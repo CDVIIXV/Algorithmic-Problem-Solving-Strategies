@@ -2,22 +2,23 @@
 
 #include <iostream>
 
+#define MAX_ROW 8
+#define MAX_COL 8
+#define MAX_WORD_COUNT 8
+
 using namespace std;
 
-const int MAX_ROW = 8;
-const int MAX_COL = 8;
 const int MAX_DIRECTION = 8;
-const int MAX_WORD_COUNT = 3;
 const int DERECTION[MAX_DIRECTION][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 
 int row, col, wordCount;
-char board[MAX_ROW][MAX_COL] = {0, };
+char board[MAX_ROW][MAX_COL];
 string words[MAX_WORD_COUNT];
 
 bool inRange(int y, int x);
 bool hasWord(int y, int x, int direction, const string& word);
 bool input();
-void output();
+void output(bool find, const string word);
 
 bool inRange(int y, int x)
 {
@@ -26,6 +27,10 @@ bool inRange(int y, int x)
 
 bool hasWord(int y, int x, int direction, const string& word)
 {
+    if(y == 4 && x == 0 && direction == 2)
+    {
+        cout << "here!\n";
+    }
     if(!inRange(y, x))
     {
         return false;
@@ -42,15 +47,6 @@ bool hasWord(int y, int x, int direction, const string& word)
     }
 
     return hasWord(y + DERECTION[direction][0], x + DERECTION[direction][0], direction, word.substr(1));
-}
-
-int main(void)
-{
-    int w, row, col, wordCount;
-    bool findFlag;
-    input();
-    output();
-    return 0;
 }
 
 bool input()
@@ -91,10 +87,25 @@ bool input()
     return true;
 }
 
-void output()
+void output(bool find, const string word)
+{
+    if(find)
+    {
+        cout << word << " is found!\n";
+    }
+    else
+    {
+        cout << word << " is not found!\n";
+    }
+}
+
+int main(void)
 {
     int y, x, w, d;
     bool find;
+
+    input();
+
     for(w = 0; w < wordCount; w++)
     {
         find = false;
@@ -111,13 +122,7 @@ void output()
                 }
             }
         }
-        if(find)
-        {
-            cout << words[w] << " is found!\n";
-        }
-        else
-        {
-            cout << words[w] << " is not found!\n";
-        }
+        output(find, words[w]);
     }
+    return 0;
 }
